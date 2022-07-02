@@ -1,0 +1,15 @@
+# Copyright (c) 2019, Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  Worldsemi WS2812 LED strip, nrfx PWM binding
+
+  Driver bindings for controlling a WS2812 or compatible LED
+  strip with a PWM output on a device with nrfx drivers.
+
+  Use of this driver implies an ~16x internal memory overhead (16 bits of
+  driver RAM overhead per bit of pixel data + 16 stop bits).
+
+compatible: "worldsemi,ws2812-nrfx-pwm"
+
+include: [base.yaml, ws2812.yaml]

@@ -1,0 +1,24 @@
+# Copyright (c) 2017 Linaro Limited
+# Copyright (c) 2019 Nordic Semiconductor ASA
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# The following blog post is an excellent resource about pulse timing:
+#
+# https://wp.josh.com/2014/05/13/ws2812-neopixels-are-not-so-finicky-once-you-get-to-know-them/
+
+config WS2812_STRIP_NRFX_PWM
+	bool "PWM driver"
+	depends on WS2812_STRIP
+	depends on PWM 
+	depends on HAS_HW_NRF_PWM0 \
+		|| HAS_HW_NRF_PWM1 \
+		|| HAS_HW_NRF_PWM2 \
+		|| HAS_HW_NRF_PWM3
+	select NRFX_PWM0 if HAS_HW_NRF_PWM0
+	select NRFX_PWM1 if HAS_HW_NRF_PWM1
+	select NRFX_PWM2 if HAS_HW_NRF_PWM2
+	select NRFX_PWM3 if HAS_HW_NRF_PWM3
+	help
+	  The nrfx PWM driver requires only one pin, but significantly more
+	  memory (16bits of overhead per bit of pixel data + 16 stop bits).
